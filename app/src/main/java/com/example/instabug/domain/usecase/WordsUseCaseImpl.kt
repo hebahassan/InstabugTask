@@ -13,10 +13,10 @@ class WordsUseCaseImpl(private val repository: IRepository): IWordsUseCase {
         return convertedResponse.split(" ").filter { it != "" }
     }
 
-    override fun mappingData(responseList: List<String>): Map<String, Int> {
+    override fun mappingResponse(list: List<String>): HashMap<String, Int> {
         val wordsMap = HashMap<String, Int>()
 
-        responseList.forEach {
+        list.forEach {
             var count = wordsMap[it] ?: 0
             wordsMap[it] = ++count
         }

@@ -8,13 +8,13 @@ import java.net.URL
 import java.nio.charset.Charset
 import javax.net.ssl.HttpsURLConnection
 
-class ApiSourceImpl: IApiSource {
+class ApiSourceImpl(private val requestUrl: String): IApiSource {
 
     override fun fetchHtmlResponse(): String {
         val content = StringBuilder()
 
         try {
-            val url = URL(" https://instabug.com")
+            val url = URL(requestUrl)
             val connection = url.openConnection() as HttpURLConnection
 
             when (connection.responseCode) {

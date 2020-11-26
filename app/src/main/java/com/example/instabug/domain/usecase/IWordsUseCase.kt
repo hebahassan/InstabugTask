@@ -4,5 +4,5 @@ interface IWordsUseCase {
 
     fun convertResponse(): List<String>
 
-    fun mappingData(responseList: List<String>): Map<String, Int>
+    fun mappingResponse(list: List<String>): HashMap<String, Int>
 }
