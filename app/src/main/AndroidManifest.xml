@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Instabug"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".presenter.WordsListActivity">
+        <activity android:name=".ui.datascreen.DataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
