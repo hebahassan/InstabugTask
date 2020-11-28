@@ -2,9 +2,8 @@ package com.example.instabug.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.instabug.common.network.INetworkProvider
+import com.example.instabug.common.network.NetworkProvider
 import com.example.instabug.data.apiservice.ApiService
-import com.example.instabug.data.apiservice.NetworkProviderImpl
 import com.example.instabug.data.datasource.LocalDataSourceImpl
 import com.example.instabug.data.datasource.RemoteDataSourceImpl
 import com.example.instabug.data.db.MyDatabase
@@ -15,7 +14,7 @@ import com.example.instabug.domain.repositories.IRepository
 
 class DataContainer(context: Context) {
 
-    private val networkProvider: INetworkProvider = NetworkProviderImpl(context)
+    private val networkProvider: NetworkProvider = NetworkProvider(context)
 
     private val apiService = ApiService("https://instabug.com")
     private val database = Room.databaseBuilder(context, MyDatabase::class.java, "MyDatabase").build()

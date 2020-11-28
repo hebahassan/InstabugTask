@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Instabug</string>
+    <string name="error">Error</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_error">Error in retrieving data.. Please try again</string>
 </resources>

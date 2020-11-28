@@ -6,7 +6,9 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.instabug.R
 import com.example.instabug.app.InstabugApplication
+import com.example.instabug.di.AppContainer
 import com.example.instabug.di.DisplayDataContainer
+import com.example.instabug.domain.models.DisplayedDataModel
 import com.example.instabug.util.ErrorHandler
 import com.example.instabug.viewmodel.ErrorState
 import com.example.instabug.viewmodel.LoadingState
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_words_list.*
 
 class DataActivity : AppCompatActivity() {
 
+    private lateinit var appContainer: AppContainer
     private lateinit var viewModel: DataViewModel
     private val dataAdapter = DataAdapter()
 
@@ -22,7 +25,7 @@ class DataActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_words_list)
 
-        val appContainer = (application as InstabugApplication).appContainer
+        appContainer = (application as InstabugApplication).appContainer
         appContainer.displayDataContainer = DisplayDataContainer(appContainer.dataContainer)
         viewModel = appContainer.displayDataContainer?.viewModelFactory?.create()!!
 
@@ -34,16 +37,9 @@ class DataActivity : AppCompatActivity() {
             when(it) {
                 LoadingState -> getLoadingStatus(true)
 
-                is SuccessState -> {
-                    getLoadingStatus(false)
-                    wordsRV.adapter = dataAdapter
-                    dataAdapter.updateHashMap(it.data.data)
-                }
+                is SuccessState -> handleSuccessState(it.data)
 
-                is ErrorState -> {
-                    getLoadingStatus(false)
-                    ErrorHandler.handleError(this)
-                }
+                is ErrorState -> handleErrorState()
             }
         })
     }
@@ -54,5 +50,17 @@ class DataActivity : AppCompatActivity() {
 
             false -> progressBar.visibility = View.GONE
         }
+    }
+
+    private fun handleSuccessState(data: DisplayedDataModel) {
+        getLoadingStatus(false)
+        wordsRV.adapter = dataAdapter
+        dataAdapter.updateHashMap(data.data)
+    }
+
+    private fun handleErrorState() {
+        getLoadingStatus(false)
+        val errorHandler = ErrorHandler(this)
+        errorHandler.handleError()
     }
 }

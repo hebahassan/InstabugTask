@@ -1,6 +1,6 @@
 package com.example.instabug.data.repositories
 
-import com.example.instabug.common.network.INetworkProvider
+import com.example.instabug.common.network.NetworkProvider
 import com.example.instabug.domain.datasource.ILocalDataSource
 import com.example.instabug.domain.datasource.IRemoteDataSource
 import com.example.instabug.domain.models.DisplayedDataModel
@@ -9,7 +9,7 @@ import com.example.instabug.domain.repositories.IRepository
 internal class RepositoryImpl(
     private val remoteDataSource: IRemoteDataSource,
     private val localDataSource: ILocalDataSource,
-    private val networkProvider: INetworkProvider
+    private val networkProvider: NetworkProvider
 ) : IRepository {
 
     override fun fetchData(): DisplayedDataModel {

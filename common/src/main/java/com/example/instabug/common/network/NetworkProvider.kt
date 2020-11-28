@@ -1,20 +1,21 @@
-package com.example.instabug.data.apiservice
+package com.example.instabug.common.network
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
-import com.example.instabug.common.network.INetworkProvider
 
-class NetworkProviderImpl(private val context: Context): INetworkProvider {
+class NetworkProvider(private val context: Context) {
 
-    override fun isConnected(): Boolean {
+    fun isConnected(): Boolean {
         var result = false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val networkCapabilities = connectivityManager.activeNetwork ?: return false
-            val actNw = connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+            val actNw =
+                connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
 
             result = when {
                 actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
@@ -22,7 +23,7 @@ class NetworkProviderImpl(private val context: Context): INetworkProvider {
                 actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
                 else -> false
             }
-        }else {
+        } else {
             connectivityManager.run {
                 connectivityManager.activeNetworkInfo?.run {
                     result = when (type) {
