@@ -1,13 +1,16 @@
 package com.example.instabug.data.di
 
-import com.example.instabug.data.apiservice.ApiServiceImpl
-import com.example.instabug.data.apiservice.IApiService
-import com.example.instabug.data.mappers.DataMapper
-import com.example.instabug.data.repositories.RemoteRepoImpl
-import com.example.instabug.domain.repositories.IRemoteRepo
+import android.content.Context
+import androidx.room.Room
+import com.example.instabug.data.apiservice.ApiService
+import com.example.instabug.data.db.MyDatabase
+import com.example.instabug.data.repositories.RepositoryImpl
+import com.example.instabug.domain.repositories.IRepository
 
-class DataContainer {
+class DataContainer(context: Context) {
 
-    private val apiService: IApiService = ApiServiceImpl("https://instabug.com")
-    val remoteRepo: IRemoteRepo = RemoteRepoImpl(apiService, DataMapper())
+    private val apiService = ApiService("https://instabug.com")
+//    val repository: IRepository = RepositoryImpl(apiService)
+
+    private val database = Room.databaseBuilder(context, MyDatabase::class.java, "MyDatabase").build()
 }

@@ -6,6 +6,6 @@ import com.example.instabug.viewmodel.WordsViewModelFactory
 
 class DisplayDataContainer(dataContainer: DataContainer) {
 
-    private val useCase = GetDisplayedDataUseCase(dataContainer.remoteRepo)
+    private val useCase = GetDisplayedDataUseCase(dataContainer.repository)
     val viewModelFactory = WordsViewModelFactory(useCase)
 }
