@@ -5,9 +5,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 
-class NetworkProvider(private val context: Context) {
+class NetworkProvider(private val context: Context): INetworkProvider {
 
-    fun isConnected(): Boolean {
+    override fun isConnected(): Boolean {
         var result = false
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

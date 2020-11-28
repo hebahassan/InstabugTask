@@ -5,4 +5,4 @@ internal fun String.ignoreSpecialCharacters(): String {
     return regex.replace(this, " ")
 }
 
-internal fun String.toStringList(): List<String> = this.split(" ")
+internal fun String.toStringList(): List<String> = this.trim().split("\\s+".toRegex())

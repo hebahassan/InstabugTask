@@ -16,11 +16,7 @@ class DataViewModel(private val useCase: GetDisplayedDataUseCase): ViewModel() {
 
     val receivedData = MutableLiveData<ViewModelState>()
 
-    init {
-        fetchMappedResponse()
-    }
-
-    private fun fetchMappedResponse() {
+    fun fetchMappedResponse() {
         val executor = Executors.newSingleThreadExecutor()
         val handler = Handler(Looper.getMainLooper())
 

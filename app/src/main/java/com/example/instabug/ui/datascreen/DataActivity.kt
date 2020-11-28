@@ -29,6 +29,7 @@ class DataActivity : AppCompatActivity() {
         appContainer.displayDataContainer = DisplayDataContainer(appContainer.dataContainer)
         viewModel = appContainer.displayDataContainer?.viewModelFactory?.create()!!
 
+        viewModel.fetchMappedResponse()
         observeOnViewModel()
     }
 

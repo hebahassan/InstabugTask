@@ -8,7 +8,7 @@ internal fun DataResponse.toDisplayedDataModel(): DisplayedDataModel {
 
     val data = HashMap<String, Int>()
 
-    this.response.toStringList().filter { it != "" }.forEach {
+    this.response.toStringList().forEach {
         var count = data[it] ?: 0
         data[it] = ++count
     }

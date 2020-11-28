@@ -10,9 +10,9 @@ import java.net.URL
 import java.nio.charset.Charset
 import javax.net.ssl.HttpsURLConnection
 
-internal class ApiService(private val requestUrl: String) {
+internal class ApiService(private val requestUrl: String): IApiService {
 
-    fun fetchHtmlResponse(): DataResponse {
+    override fun fetchHtmlResponse(): DataResponse {
         val content = StringBuilder()
         val dataResponse = DataResponse()
 
