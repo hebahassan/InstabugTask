@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="Instabug.app" target="1.8" />
+      <module name="Instabug.common" target="1.8" />
       <module name="Instabug.data" target="1.8" />
     </bytecodeTargetLevel>
   </component>

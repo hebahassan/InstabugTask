@@ -6,7 +6,5 @@ interface ILocalDataSource {
 
     fun replaceWordsData(data: DisplayedDataModel)
 
-    fun selectAllData(): DisplayedDataModel
-
-    fun deleteAllData()
+    fun displayWordsData(): DisplayedDataModel
 }

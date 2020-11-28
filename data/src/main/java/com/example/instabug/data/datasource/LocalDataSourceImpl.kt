@@ -12,12 +12,8 @@ internal class LocalDataSourceImpl(private val wordsDao: WordsDao): ILocalDataSo
         wordsDao.replace(data.toWordsList())
     }
 
-    override fun selectAllData(): DisplayedDataModel {
+    override fun displayWordsData(): DisplayedDataModel {
         val wordsList = wordsDao.selectAll()
         return wordsList.toDisplayedDataModel()
-    }
-
-    override fun deleteAllData() {
-        wordsDao.deleteAll()
     }
 }

@@ -8,8 +8,6 @@ import androidx.room.Update
 
 interface BaseDao<T> {
 
-    fun select(id: Long): T
-
     fun selectAll(): List<T>
 
     @Insert(onConflict = IGNORE)

@@ -42,7 +42,7 @@ class DataActivity : AppCompatActivity() {
 
                 is ErrorState -> {
                     getLoadingStatus(false)
-                    ErrorHandler.handleError(it.throwable.message ?: "No code", this)
+                    ErrorHandler.handleError(this)
                 }
             }
         })
