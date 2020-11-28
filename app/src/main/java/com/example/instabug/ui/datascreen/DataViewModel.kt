@@ -35,6 +35,5 @@ class DataViewModel(private val useCase: GetDisplayedDataUseCase): ViewModel() {
                 }
             }
         }
-
     }
 }
